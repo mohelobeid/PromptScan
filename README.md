@@ -457,10 +457,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Mohamed Elobeid**
 
-- Security Researcher & AI Engineer
-- Specializing in LLM Security and Prompt Injection Defense
-- Part of TechNation Global Talent Application Portfolio
-
 ---
 
 ## 🙏 Acknowledgments
