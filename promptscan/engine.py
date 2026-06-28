@@ -91,7 +91,8 @@ class AttackEngine:
         # Execute attacks
         console.print("[bold yellow]Executing security tests...[/bold yellow]")
         all_vulnerabilities: List[VulnerabilityMatch] = []
-        
+        flagged_payloads = 0
+
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -110,7 +111,9 @@ class AttackEngine:
                     )
                     
                     all_vulnerabilities.extend(vulnerabilities)
-                    
+                    if vulnerabilities:
+                        flagged_payloads += 1
+
                     progress.update(task, advance=1)
                     
                     # Small delay to avoid overwhelming the API
@@ -121,8 +124,11 @@ class AttackEngine:
             "total_payloads": total_payloads,
             "categories_tested": len(payloads),
             "vulnerabilities_found": len(all_vulnerabilities),
-            "successful_attacks": len(all_vulnerabilities),
-            "failed_attacks": total_payloads - len(all_vulnerabilities),
+            # Payloads that produced at least one finding vs. those that did not.
+            # (A single payload can trigger multiple findings, so these are
+            # counted per-payload to stay consistent with total_payloads.)
+            "successful_attacks": flagged_payloads,
+            "failed_attacks": total_payloads - flagged_payloads,
         }
 
         console.print(f"\n[green]✓ Scan complete[/green]")
