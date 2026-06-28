@@ -1,5 +1,7 @@
 """Risk scoring algorithm for prompt injection vulnerabilities."""
 
+from __future__ import annotations
+
 from typing import List
 
 from promptscan.analyzer import VulnerabilityMatch

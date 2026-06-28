@@ -123,6 +123,15 @@ def test(
         engine = AttackEngine(config)
         vulnerabilities, metadata = asyncio.run(engine.run_scan())
 
+        # If the scan could not run (e.g. unreachable target or no payloads),
+        # do NOT emit a "clean" report — that would be a misleading false
+        # negative for a security tool. Surface the error and exit non-zero.
+        if metadata.get("error"):
+            console.print(
+                f"[red]Scan did not complete: {metadata['error']}[/red]"
+            )
+            sys.exit(2)
+
         # Generate report
         reporter = ReportGenerator()
 
@@ -201,7 +210,7 @@ def info() -> None:
     console.print("  vulnerabilities. Designed for security professionals and developers.\n")
     
     console.print("[bold]Features:[/bold]")
-    console.print("  • 25+ high-quality attack payloads across 6 categories")
+    console.print("  • 36 high-quality attack payloads across 6 categories")
     console.print("  • Intelligent response analysis and pattern matching")
     console.print("  • Risk scoring algorithm (0-10 scale)")
     console.print("  • Multiple output formats (console, JSON, HTML)")

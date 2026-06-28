@@ -30,7 +30,7 @@ According to OWASP's Top 10 for LLM Applications (2023), prompt injection ranks 
 
 ## ✨ Features
 
-- 🎯 **35+ High-Quality Attack Payloads** across 6 vulnerability categories
+- 🎯 **36 High-Quality Attack Payloads** across 6 vulnerability categories
 - 🔍 **Intelligent Response Analysis** using pattern matching and heuristics
 - 📊 **Risk Scoring Algorithm** (0-10 scale) with severity classification
 - 📄 **Multiple Output Formats**: Console, JSON, and HTML reports
@@ -143,7 +143,7 @@ promptscan info
 
 Target: https://api.example.com/chat
 Scan Date: 2026-05-09 10:00:00 UTC
-Total Payloads Tested: 35
+Total Payloads Tested: 36
 Vulnerabilities Found: 8
 
 Risk Score: 8.2/10.0
@@ -172,7 +172,7 @@ implement input sanitization, and add output validation before production use.
   "scan_metadata": {
     "target": "https://api.example.com/chat",
     "timestamp": "2026-05-09T10:00:00Z",
-    "total_payloads": 35,
+    "total_payloads": 36,
     "categories_tested": 6
   },
   "risk_assessment": {
@@ -202,15 +202,16 @@ implement input sanitization, and add output validation before production use.
 
 ### HTML Report
 
-![HTML Report Example](docs/images/html-report-example.png)
-
-*Professional HTML reports with visual risk indicators and detailed vulnerability breakdowns*
+Running with `-o html -r report.html` produces a self-contained styled HTML
+report featuring a risk-score banner, a severity-coloured summary grid, and a
+detailed vulnerabilities table. Open the generated file in any browser to view
+it.
 
 ---
 
 ## 🎯 Attack Payload Categories
 
-PromptScan includes 35+ carefully crafted payloads across 6 categories:
+PromptScan includes 36 carefully crafted payloads across 6 categories:
 
 ### 1. System Prompt Leak (6 payloads)
 Attempts to extract the system prompt or initial instructions that define the AI's behavior.
